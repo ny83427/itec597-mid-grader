@@ -75,7 +75,6 @@ public class Grader {
                 list.add(process(gp));
             }
 
-            System.out.println("=======================");
             System.out.println(list.size() + " students graded successfully!");
             list.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
             for (Pair<String, Integer> p : list) {
@@ -83,7 +82,6 @@ public class Grader {
                 double percentage = p.getValue() * 100d / FULL;
                 System.out.printf("%s: %d/%d(%.1f%%)%n", p.getKey(), p.getValue(), FULL, percentage);
             }
-            System.out.println("=======================");
         }
     }
 
@@ -98,15 +96,13 @@ public class Grader {
                 try {
                     Git.open(file).pull().call();
                     System.out.printf("%s pulled in %.2fS%n", url, (System.currentTimeMillis() - now) / 1000.0);
+                    return;
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return;
                 }
 
-                Files.walk(path)
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+                Files.walk(path).sorted(Comparator.reverseOrder())
+                    .map(Path::toFile).forEach(File::delete);
             }
             Git.cloneRepository().setURI(url)
                 .setDirectory(path.toFile()).call();
