@@ -43,13 +43,12 @@ class MonasteryTest {
 
     @Test
     void resolve() {
-        Monastery m = new Monastery();
         for (int i = 0; i < outputs.length; i++) {
             final int index = i;
             final String tc = "q2-case" + (index + 1);
             assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
                 assertArrayEquals(ia(outputs[index]),
-                    m.resolve(from(tc)), tc + " FAILED!"), tc + " TLE!");
+                    new Monastery().resolve(from(tc)), tc + " FAILED!"), tc + " TLE!");
         }
     }
 

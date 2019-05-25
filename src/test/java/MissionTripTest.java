@@ -28,16 +28,15 @@ class MissionTripTest {
 
     @Test
     void resolve() {
-        MissionTrip mt = new MissionTrip();
         assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
-            assertEquals(12, mt.resolve(from("q4-case1"))));
+            assertEquals(12, new MissionTrip().resolve(from("q4-case1"))));
         assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
-            assertEquals(0, mt.resolve(from("q4-case2"))));
+            assertEquals(0, new MissionTrip().resolve(from("q4-case2"))));
         assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
-            assertEquals(0, mt.resolve(from("q4-case3"))));
+            assertEquals(0, new MissionTrip().resolve(from("q4-case3"))));
         assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
-            assertEquals(4, mt.resolve(from("q4-case4"))));
+            assertEquals(4, new MissionTrip().resolve(from("q4-case4"))));
         assertTimeoutPreemptively(Duration.ofSeconds(2), () ->
-            assertEquals(8512, mt.resolve(from("q4-case5"))));
+            assertEquals(8512, new MissionTrip().resolve(from("q4-case5"))));
     }
 }
